@@ -3,7 +3,7 @@ import requests
 import base64
 
 # GitHub Credentials
-TOKEN = "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"
+TOKEN = "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"
 BRANCH = "main"
 
 # Function to check if repository exists
