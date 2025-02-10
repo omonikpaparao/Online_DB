@@ -47,7 +47,7 @@ def upload_file(repo, uploaded_file):
         
         if response.status_code in [200, 201]:
             st.success(f"✅ {uploaded_file.name} uploaded successfully!")
-            st.rerun()# Refresh file list dynamically
+            st.experimental_rerun()# Refresh file list dynamically
         else:
             st.error("❌ Failed to upload: " + str(response.json()))
     except Exception as e:
@@ -71,7 +71,7 @@ def delete_file(repo, filename):
             
             if delete_response.status_code == 200:
                 st.success(f"✅ Deletion Success!")
-                st.rerun()
+                st.experimental_rerun()
             else:
                 st.error("❌ Failed to delete: " + str(delete_response.json()))
         else:
@@ -115,8 +115,8 @@ if repo_name:
         if uploaded_file and st.button("Upload to Online Folder"):
             upload_file(repo_name, uploaded_file)
             st.session_state["uploaded_file"] = None
-            st.rerun()
-            list_files(repo)
+            st.experimental_rerun()
+            list_files(repo_name)
     else:
         st.write("Folder given is not Available Before. \n So we created a new Folder with the given Name. \nYou can use this for further usage!!!")
         create_repository(repo_name)
@@ -147,5 +147,5 @@ if repo_name:
         if uploaded_file and st.button("Upload to your Online Folder"):
             upload_file(repo_name, uploaded_file)
             st.session_state["uploaded_file"] = None
-            st.rerun()
-            list_files(repo)
+            st.experimental_rerun()
+            list_files(repo_name)
