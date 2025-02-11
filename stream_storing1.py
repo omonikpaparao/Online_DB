@@ -1,11 +1,12 @@
 import streamlit as st
 import requests
 import base64
-
+import os
 # GitHub Credentials
-TOKEN = "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"
+TOKEN = "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"
 BRANCH = "main"
 
+#TOKEN = os.getenv("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")
 # Function to check if repository exists
 def repository_exists(repo):
     url = f"https://api.github.com/repos/vinay223344/{repo}"
@@ -47,7 +48,7 @@ def upload_file(repo, uploaded_file):
         
         if response.status_code in [200, 201]:
             st.success(f"✅ {uploaded_file.name} uploaded successfully!")
-            st.experimental_rerun()# Refresh file list dynamically
+            st.rerun()# Refresh file list dynamically
         else:
             st.error("❌ Failed to upload: " + str(response.json()))
     except Exception as e:
@@ -71,7 +72,7 @@ def delete_file(repo, filename):
             
             if delete_response.status_code == 200:
                 st.success(f"✅ Deletion Success!")
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("❌ Failed to delete: " + str(delete_response.json()))
         else:
@@ -115,7 +116,7 @@ if repo_name:
         if uploaded_file and st.button("Upload to Online Folder"):
             upload_file(repo_name, uploaded_file)
             st.session_state["uploaded_file"] = None
-            st.experimental_rerun()
+            st.rerun()
             list_files(repo_name)
     else:
         st.write("Folder given is not Available Before. \n So we created a new Folder with the given Name. \nYou can use this for further usage!!!")
@@ -147,5 +148,5 @@ if repo_name:
         if uploaded_file and st.button("Upload to your Online Folder"):
             upload_file(repo_name, uploaded_file)
             st.session_state["uploaded_file"] = None
-            st.experimental_rerun()
+            st.rerun()
             list_files(repo_name)
