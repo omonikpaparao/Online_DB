@@ -3,7 +3,7 @@ import requests
 import base64
 import os
 # GitHub Credentials
-TOKEN = "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"
+TOKEN = st.secrets["api"]["key"]
 BRANCH = "main"
 
 #TOKEN = os.getenv("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")
