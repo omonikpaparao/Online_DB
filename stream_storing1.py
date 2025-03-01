@@ -84,6 +84,7 @@ def delete_file(repo, filename):
 st.title("📂 Online DB")
 st.write("⚠️ You can use this to save Your Files Online...")
 st.write("⚠️ By Providing a Unique Folder Name and can Manupulate Futher...")
+st.write("⚠️ If Any File Not get Uploaded means that file may contain Secret Tokens or else the File may be opened in your System or the file may contain harmful data")
 st.markdown("[Click Here to see the Disclaimer and Demo](https://drive.google.com/file/d/142UNajeSQOtsJdKy6zQ7etUSwj7FqqCJ/view?usp=sharing)")
 
 repo_name = st.text_input("Enter your unique Folder Name and Press Enter:")
