@@ -5,17 +5,17 @@ import os
 # GitHub Credentials
 TOKEN = st.secrets["api"]["key"]
 BRANCH = "main"
+github_username = st.secrets["github"]["username"]
 
-#TOKEN = os.getenv("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")
 # Function to check if repository exists
 def repository_exists(repo):
-    url = f"https://api.github.com/repos/vinay223344/{repo}"
+    url = f"https://api.github.com/repos/{github_username}/{repo}"
     response = requests.get(url, headers={"Authorization": f"token {TOKEN}"})
     return response.status_code == 200
 
 # Function to list files in the repository
 def list_files(repo):
-    url = f"https://api.github.com/repos/vinay223344/{repo}/contents/"
+    url = f"https://api.github.com/repos/{github_username}/{repo}/contents/"
     response = requests.get(url, headers={"Authorization": f"token {TOKEN}"})
     if response.status_code == 200:
         return response.json()
@@ -32,7 +32,7 @@ def upload_file(repo, uploaded_file):
         file_content = uploaded_file.read()
         content = base64.b64encode(file_content).decode()
         github_file_path = f"{uploaded_file.name}"
-        url = f"https://api.github.com/repos/vinay223344/{repo}/contents/{github_file_path}"
+        url = f"https://api.github.com/repos/{github_username}/{repo}/contents/{github_file_path}"
         response = requests.get(url, headers={"Authorization": f"token {TOKEN}"})
         sha = response.json().get("sha", "")
         
@@ -58,7 +58,7 @@ def upload_file(repo, uploaded_file):
 def delete_file(repo, filename):
     try:
         github_file_path = f"{filename}"
-        url = f"https://api.github.com/repos/vinay223344/{repo}/contents/{github_file_path}"
+        url = f"https://api.github.com/repos/{github_username}/{repo}/contents/{github_file_path}"
         response = requests.get(url, headers={"Authorization": f"token {TOKEN}"})
         
         if response.status_code == 200:
