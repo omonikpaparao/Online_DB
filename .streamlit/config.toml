@@ -1,8 +1,2 @@
 [server]
 maxUploadSize=500
-[theme]
-hideMenu = true 
-[server]
-headless = true
-[browser]
-gatherUsageStats = false
