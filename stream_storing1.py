@@ -7,6 +7,17 @@ TOKEN = st.secrets["api"]["key"]
 BRANCH = "main"
 github_username = st.secrets["github"]["username"]
 
+st.set_page_config(
+    page_title="Online DB",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
 # Function to check if repository exists
 def repository_exists(repo):
     url = f"https://api.github.com/repos/{github_username}/{repo}"
